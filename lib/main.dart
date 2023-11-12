@@ -1,5 +1,5 @@
 import 'package:chats_app/All_Binding/all_binding.dart';
-import 'package:chats_app/Views/home_Screen.dart';
+import 'package:chats_app/Views/spalash/spalash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const SpalashScreen(),
     );
   }
 }

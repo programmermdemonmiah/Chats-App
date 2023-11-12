@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
             ];
           },
           body: TabBarView(
-            controller: tabController,
+            // controller: tabController,
             children: const [
               ChatsTab(),
               CallsTab(),
