@@ -1,6 +1,7 @@
 
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/auth/login/login_screen.dart';
+import 'package:chats_app/Views/auth/register/register_screen.dart';
 import 'package:chats_app/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class LogRegScreen extends StatelessWidget {
                   const SizedBox(height: 20,),
                   const CircleAvatar(
                     backgroundImage: AssetImage('assets/images/CA.png'),
-                    radius: 60,
+                    radius: 90,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +34,7 @@ class LogRegScreen extends StatelessWidget {
                       const SizedBox(height: 35,),
                       const Text(
                         'Ensure Login or Register',
-                        style: TextStyle(color: Colors.white, fontSize: 22),
+                        style: TextStyle(color: Colors.white, fontSize: 23, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(
                         height: 10,
@@ -59,6 +60,7 @@ class LogRegScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+                      Get.to(const RegisterScreen());
                     },
                     child: customButton(
                         buttonName: 'Registration',

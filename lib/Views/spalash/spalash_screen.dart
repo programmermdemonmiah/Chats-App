@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/getStart/get_started_screen.dart';
+import 'package:chats_app/Views/home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class _SpalashScreenState extends State<SpalashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {Get.to(const GetStartedScreen());});
+    Timer(const Duration(seconds: 3), () {Get.to(HomeScreen());});
   }
   @override
   Widget build(BuildContext context) {

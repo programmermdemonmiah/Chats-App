@@ -9,12 +9,12 @@ import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({super.key});
-
-   final tabController = Get.put(TabControllersState());
+   // final MyTabs _tabs = Get.put(MyTabs());
+   final _tabController = Get.put(MyTabs());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       backgroundColor: background,
       body: DefaultTabController(
         initialIndex: 0,
@@ -40,38 +40,39 @@ class HomeScreen extends StatelessWidget {
                     ),
                     color: appBarBg,
                     onSelected: (value) {
-                      if(value == 1){
+                      switch(_tabController.tabController.index){
+                        case 0:
+                          if(value == 1){
 
-                      }else if(value == 2){
-                        Get.to(const SettingsScreen());
-                      }else {Get.back();}
+                          }else if(value == 2){
+                            Get.to(const SettingsScreen());
+                          }else {Get.back();}
+                          break;
+                        case 1:
+                          if(value == 1){
+                            Get.to(const SettingsScreen());
+                          }else{Get.back();}
+                      }
                     },
-                      itemBuilder: (context) {
-                        return popUpItem;
-                      },
-                  ),
+                    itemBuilder: (context) => _tabController.popUpItems,
+                  )
                 ],
                 bottom: TabBar(
+                    controller: _tabController.tabController,
                     indicatorColor: primary,
                     indicatorSize: TabBarIndicatorSize.tab,
                     unselectedLabelColor: Colors.white.withOpacity(0.5),
                     labelColor: primary,
-                    tabs: const [
-                      Tab(
-                        child: Text('Chats', style: TextStyle(color: Colors.white),),
-                      ),
-                      Tab(
-                        child: Text('Calls', style: TextStyle(color: Colors.white),),
-                      ),
-                    ]),
+                    tabs: _tabController.myTabs),
               )
             ];
           },
           body: TabBarView(
-            // controller: tabController,
-            children: const [
+            // controller: _tabs.tabController,
+            controller: _tabController.tabController,
+            children: [
               ChatsTab(),
-              CallsTab(),
+              CallsTab()
             ],
           ),
         ),

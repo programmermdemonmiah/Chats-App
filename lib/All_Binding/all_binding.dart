@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class AllBinding extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(() => TabControllersState());
+    Get.lazyPut(() => MyTabs());
+    // Get.lazyPut(() => TabStateControllers());
   }
 }

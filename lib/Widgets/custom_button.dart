@@ -5,7 +5,7 @@ Widget customButton({required String buttonName, required Color buttonColor, req
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
-      height: 40,
+      height: 45,
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -13,7 +13,7 @@ Widget customButton({required String buttonName, required Color buttonColor, req
         border: Border.all(color: primary, width: 2),
         color: buttonColor,
       ),
-      child: Text(buttonName, style: const TextStyle(color: Colors.white, fontSize: 18),),
+      child: Text(buttonName, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),),
     ),
   );
 }

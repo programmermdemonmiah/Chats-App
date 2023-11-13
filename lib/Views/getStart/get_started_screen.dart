@@ -24,7 +24,7 @@ class GetStartedScreen extends StatelessWidget {
                   const SizedBox(height: 30,),
                   const CircleAvatar(
                     backgroundImage: AssetImage('assets/images/CA.png'),
-                    radius: 80,
+                    radius: 150,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +33,11 @@ class GetStartedScreen extends StatelessWidget {
                       const Center(
                         child: Text(
                           'Welcome to ChatsApp',
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+                          style: TextStyle(color: Colors.white,  fontSize: 23, fontWeight: FontWeight.w600),
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       Text(
                         "Read our privacy policy. If you are agree then click Agree and continue",
