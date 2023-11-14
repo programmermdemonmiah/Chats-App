@@ -13,7 +13,7 @@ class ChatsTab extends StatelessWidget {
             subtitle: Text('username', style: TextStyle(color: Colors.white.withOpacity(0.5)),),
             leading: const CircleAvatar(
               backgroundImage: NetworkImage(''),
-              radius: 60,
+              radius: 50,
               backgroundColor: primary,
             ),
             trailing: Column(
@@ -28,6 +28,7 @@ class ChatsTab extends StatelessWidget {
                   ),
                   child: const Text('1'),
                 ),
+                SizedBox(height: 3,),
                 Container(
                   child: const Text('9.15',style: TextStyle(color: primary),),
                 )

@@ -1,5 +1,5 @@
 import 'package:chats_app/Controllers/tab_state_controllers.dart';
-import 'package:chats_app/Utils/apptext.dart';
+import 'package:chats_app/Utils/app_text.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/Tabs/calls_tab.dart';
 import 'package:chats_app/Views/Tabs/chats_tabs.dart';
@@ -8,13 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
-   // final MyTabs _tabs = Get.put(MyTabs());
-   final _tabController = Get.put(MyTabs());
+  HomeScreen({super.key});
+
+  // final MyTabs _tabs = Get.put(MyTabs());
+  final _tabController = Get.put(MyTabs());
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       backgroundColor: background,
       body: DefaultTabController(
         initialIndex: 0,
@@ -27,7 +28,10 @@ class HomeScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                title: const Text(appBarTittle, style: TextStyle(color: Colors.white),),
+                title: const Text(
+                  appBarTittle,
+                  style: TextStyle(color: Colors.white),
+                ),
                 actions: [
                   IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
                   PopupMenuButton(
@@ -40,18 +44,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                     color: appBarBg,
                     onSelected: (value) {
-                      switch(_tabController.tabController.index){
+                      switch (_tabController.tabController.index) {
                         case 0:
-                          if(value == 1){
-
-                          }else if(value == 2){
+                          if (value == 1) {} else if (value == 2) {
                             Get.to(const SettingsScreen());
-                          }else {Get.back();}
+                          } else {
+                            Get.back();
+                          }
                           break;
                         case 1:
-                          if(value == 1){
+                          if (value == 1) {
                             Get.to(const SettingsScreen());
-                          }else{Get.back();}
+                          } else {
+                            Get.back();
+                          }
                       }
                     },
                     itemBuilder: (context) => _tabController.popUpItems,
@@ -70,10 +76,7 @@ class HomeScreen extends StatelessWidget {
           body: TabBarView(
             // controller: _tabs.tabController,
             controller: _tabController.tabController,
-            children: [
-              ChatsTab(),
-              CallsTab()
-            ],
+            children: const [ChatsTab(), CallsTab()],
           ),
         ),
       ),

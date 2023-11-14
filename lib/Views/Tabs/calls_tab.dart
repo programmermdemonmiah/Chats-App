@@ -1,5 +1,4 @@
 import 'package:chats_app/Utils/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CallsTab extends StatelessWidget {
@@ -15,7 +14,7 @@ class CallsTab extends StatelessWidget {
         leading: const CircleAvatar(
           backgroundImage: NetworkImage(''),
           backgroundColor: primary,
-          radius: 60,
+          radius: 50,
         ),
         trailing: IconButton(onPressed: () {
           

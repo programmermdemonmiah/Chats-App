@@ -1,12 +1,11 @@
 import 'package:chats_app/All_Binding/all_binding.dart';
 import 'package:chats_app/Views/spalash/spalash_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   AllBinding().dependencies();
   runApp(const MyApp());
 }

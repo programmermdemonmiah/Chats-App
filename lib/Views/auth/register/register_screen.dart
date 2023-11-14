@@ -22,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
               Expanded(
                 child: Container(
                   alignment: Alignment.center,
-                  child:  SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -30,14 +30,18 @@ class RegisterScreen extends StatelessWidget {
                           backgroundImage: AssetImage('assets/images/CA.png'),
                           radius: 70,
                         ),
-                        SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
                               'Register',
-                              style:
-                              TextStyle(color: Colors.white,  fontSize: 22, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600),
                             ),
                             const SizedBox(
                               height: 8,
@@ -51,10 +55,86 @@ class RegisterScreen extends StatelessWidget {
                             const SizedBox(
                               height: 30,
                             ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Column(
+                                  children: [
+                                    const Text(
+                                      'First Name',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    TextFormField(
+                                      style: const TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter you first name',
+                                        hintStyle: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.5)),
+                                        enabled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: const BorderSide(
+                                              width: 2, color: primary),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            borderSide: const BorderSide(
+                                                width: 2, color: Colors.blue)),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                                SizedBox(width: 5,),
+                                Expanded(
+                                    child: Column(
+                                  children: [
+                                    const Text(
+                                      'Last Name',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    TextFormField(
+                                      style: const TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter you Last name',
+                                        hintStyle: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.5)),
+                                        enabled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: const BorderSide(
+                                              width: 2, color: primary),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            borderSide: const BorderSide(
+                                                width: 2, color: Colors.blue)),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
                             const Text(
                               'Username',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
                             const SizedBox(
                               height: 7,
@@ -93,11 +173,13 @@ class RegisterScreen extends StatelessWidget {
                                 focusColor: primary,
                               ),
                             ),
-                            SizedBox(height: 8,),
+                            const SizedBox(
+                              height: 8,
+                            ),
                             const Text(
                               'Email',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
                             const SizedBox(
                               height: 7,
@@ -142,7 +224,7 @@ class RegisterScreen extends StatelessWidget {
                             const Text(
                               'Password',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
                             const SizedBox(
                               height: 7,
@@ -187,11 +269,9 @@ class RegisterScreen extends StatelessWidget {
                             const Text(
                               'Re-type Password',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 18),
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
-                            const SizedBox(
-                              height: 7,
-                            ),
+                            const SizedBox(height: 7),
                             TextFormField(
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
@@ -228,8 +308,13 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30,),
-                        customButton(buttonName: 'Register', buttonColor: primary, context: context)
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        customButton(
+                            buttonName: 'Register',
+                            buttonColor: primary,
+                            context: context)
                       ],
                     ),
                   ),
