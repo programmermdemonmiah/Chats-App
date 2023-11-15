@@ -4,6 +4,8 @@ import 'package:chats_app/Views/home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../getStart/get_started_screen.dart';
+
 class SpalashScreen extends StatefulWidget {
   const SpalashScreen({super.key});
 
@@ -15,8 +17,13 @@ class _SpalashScreenState extends State<SpalashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {Get.to(HomeScreen());});
+    //Future.delayed or Timmer same work========
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.until((route) => false);
+      Get.to(const GetStartedScreen());
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +45,10 @@ class _SpalashScreenState extends State<SpalashScreen> {
                   backgroundColor: Colors.green,
                 ),
               ),
-              Text("Created by 'programmermdemonmiah' ", style: TextStyle(color: Colors.white, fontSize: 18),),
+              Text(
+                "Created by 'programmermdemonmiah' ",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
             ],
           ),
         ),

@@ -1,7 +1,8 @@
 import 'package:chats_app/Utils/colors.dart';
-import 'package:chats_app/Views/auth/register/register_screen.dart';
+import 'package:chats_app/Views/auth/register/registration_screen.dart';
 import 'package:chats_app/Widgets/custom_back_button.dart';
 import 'package:chats_app/Widgets/custom_button.dart';
+import 'package:chats_app/Widgets/custom_textformfild.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,8 +43,10 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               const Text(
                                 'Login',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -57,98 +60,21 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text(
-                                'Email',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 18),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              TextFormField(
-                                style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                    Icons.person,
-                                  ),
-                                  hintText: 'Enter your email or username',
-                                  hintStyle: TextStyle(
-                                      color: Colors.white.withOpacity(0.5)),
-                                  // border: OutlineInputBorder(
-                                  //   borderRadius: BorderRadius.circular(25),
-                                  //   borderSide: BorderSide(
-                                  //     width: 2,
-                                  //     color: Colors.white,
-                                  //   ),
-                                  // ),
-                                  enabled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    borderSide: const BorderSide(
-                                      width: 2,
-                                      color: primary,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    borderSide: const BorderSide(
-                                      width: 2,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  focusColor: primary,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text(
-                                'Password',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 18),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              TextFormField(
-                                style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock),
-                                  suffixIconColor: Colors.white70,
-                                  suffixIcon: const Icon(Icons.visibility),
-                                  hintText: 'Enter your password',
-                                  hintStyle: TextStyle(
-                                      color: Colors.white.withOpacity(0.5)),
-                                  // border: OutlineInputBorder(
-                                  //   borderRadius: BorderRadius.circular(25),
-                                  //   borderSide: BorderSide(
-                                  //     width: 2,
-                                  //     color: Colors.white,
-                                  //   ),
-                                  // ),
-                                  enabled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    borderSide: const BorderSide(
-                                      width: 2,
-                                      color: primary,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    borderSide: const BorderSide(
-                                      width: 2,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  focusColor: primary,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
+                              customTextFormField(
+                                  boldLabel: 'Email',
+                                  prefixIcon: Icons.person,
+                                  hintText: 'Enter your email'),
+                              customTextFormField(
+                                  boldLabel: 'Password',
+                                  isPasswordField: true,
+                                  prefixIcon: Icons.lock,
+                                  suffixIcon1: Icons.visibility,
+                                  suffixIcon2: Icons.visibility_off,
+                                  hintText: 'Enter your password'),
+                              const SizedBox(height: 5,),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 alignment: Alignment.centerRight,
                                 child: Tooltip(
                                   message:
@@ -166,14 +92,18 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 150,),
+                      const SizedBox(
+                        height: 140,
+                      ),
                       Column(
                         children: [
                           customButton(
                               buttonName: 'Login',
                               buttonColor: primary,
                               context: context),
-                          SizedBox(height: 10,),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           RichText(
                               text: TextSpan(
                                   style: const TextStyle(
@@ -185,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                                 TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Get.to(const RegisterScreen());
+                                      Get.to(const RegistrationScreen());
                                     },
                                   text: "Register",
                                   style: const TextStyle(

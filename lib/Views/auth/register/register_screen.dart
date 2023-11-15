@@ -56,9 +56,11 @@ class RegisterScreen extends StatelessWidget {
                               height: 30,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
                                       'First Name',
@@ -91,9 +93,10 @@ class RegisterScreen extends StatelessWidget {
                                     )
                                   ],
                                 )),
-                                SizedBox(width: 5,),
+                                const SizedBox(width: 5,),
                                 Expanded(
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
                                       'Last Name',

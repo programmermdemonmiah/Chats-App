@@ -1,4 +1,5 @@
 
+import 'package:chats_app/Controllers/password_secure_state_controllers.dart';
 import 'package:chats_app/Controllers/tab_state_controllers.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,6 @@ class AllBinding extends Bindings{
   @override
   void dependencies() {
     Get.lazyPut(() => MyTabs());
-    // Get.lazyPut(() => TabStateControllers());
+    Get.lazyPut(() => PasswordSecureState());
   }
 }

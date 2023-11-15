@@ -1,7 +1,7 @@
 
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/auth/login/login_screen.dart';
-import 'package:chats_app/Views/auth/register/register_screen.dart';
+import 'package:chats_app/Views/auth/register/registration_screen.dart';
 import 'package:chats_app/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,7 +60,7 @@ class LogRegScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(const RegisterScreen());
+                      Get.to(const RegistrationScreen());
                     },
                     child: customButton(
                         buttonName: 'Registration',
