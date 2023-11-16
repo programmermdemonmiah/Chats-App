@@ -1,7 +1,10 @@
+
 import 'package:chats_app/Utils/colors.dart';
+import 'package:chats_app/Views/auth/login/login_screen.dart';
 import 'package:chats_app/Widgets/custom_appbar.dart';
-import 'package:chats_app/Widgets/custom_settings_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -59,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 30),
               child: InkWell(
-                  onTap: () {},
+                  onTap: () {FirebaseAuth.instance.signOut(); Get.until((route) => false) ; Get.to(LoginScreen());},
                   child: const Text(
                     'Sign Out',
                     style: TextStyle(

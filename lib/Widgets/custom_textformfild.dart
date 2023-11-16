@@ -116,7 +116,7 @@ Widget customTextFormField({
   final isSecureController = Get.put(PasswordSecureState());
 
   return Padding(
-    padding: const EdgeInsets.all(5.0),
+    padding: const EdgeInsets.all(6.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,6 +127,8 @@ Widget customTextFormField({
         ),
         const SizedBox(height: 7),
         Obx(() => TextFormField(
+          controller: controller,
+          key: filedKey,
           validator: validator,
           style: const TextStyle(color: Colors.white),
           obscureText: isPasswordField == true

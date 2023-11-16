@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/home_Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../getStart/get_started_screen.dart';
 
@@ -19,8 +19,25 @@ class _SpalashScreenState extends State<SpalashScreen> {
     super.initState();
     //Future.delayed or Timmer same work========
     Future.delayed(const Duration(seconds: 3), () {
-      Get.until((route) => false);
-      Get.to(const GetStartedScreen());
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => StreamBuilder<User?>( //login set kore rakhar niyom
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot != null) {
+                  return HomeScreen();
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.deepOrange, backgroundColor: Colors.greenAccent,),
+                  );
+                }
+                return const GetStartedScreen();
+              },
+            ),
+          ),
+          (route) => false);
     });
   }
 

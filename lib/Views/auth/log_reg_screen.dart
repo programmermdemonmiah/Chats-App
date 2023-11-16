@@ -51,7 +51,7 @@ class LogRegScreen extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(const LoginScreen());
+                      Get.to( LoginScreen());
                     },
                     child: customButton(
                         buttonName: 'Login',
@@ -60,7 +60,7 @@ class LogRegScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(const RegistrationScreen());
+                      Get.to( RegistrationScreen());
                     },
                     child: customButton(
                         buttonName: 'Registration',

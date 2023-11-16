@@ -1,3 +1,4 @@
+import 'package:chats_app/Controllers/auth/log_reg_state_controller.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/auth/register/registration_screen.dart';
 import 'package:chats_app/Widgets/custom_back_button.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
+  final logInformController = Get.put(LogRegStateController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +63,12 @@ class LoginScreen extends StatelessWidget {
                                 height: 30,
                               ),
                               customTextFormField(
+                                controller: logInformController.emailController,
                                   boldLabel: 'Email',
                                   prefixIcon: Icons.person,
                                   hintText: 'Enter your email'),
                               customTextFormField(
+                                controller: logInformController.passwordController,
                                   boldLabel: 'Password',
                                   isPasswordField: true,
                                   prefixIcon: Icons.lock,
@@ -97,10 +101,15 @@ class LoginScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          customButton(
-                              buttonName: 'Login',
-                              buttonColor: primary,
-                              context: context),
+                          InkWell(
+                            onTap: () {
+                              logInformController.login();
+                            },
+                            child: customButton(
+                                buttonName: 'Login',
+                                buttonColor: primary,
+                                context: context),
+                          ),
                           const SizedBox(
                             height: 10,
                           ),
@@ -115,7 +124,7 @@ class LoginScreen extends StatelessWidget {
                                 TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Get.to(const RegistrationScreen());
+                                      Get.to( RegistrationScreen());
                                     },
                                   text: "Register",
                                   style: const TextStyle(

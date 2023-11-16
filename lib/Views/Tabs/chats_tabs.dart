@@ -7,6 +7,7 @@ class ChatsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: 5,
         itemBuilder: (context, index) {
           return ListTile(
             title: const Text('Friend Name', style: TextStyle(color: Colors.white),),
