@@ -63,11 +63,13 @@ class LoginScreen extends StatelessWidget {
                                 height: 30,
                               ),
                               customTextFormField(
+                                inputType: TextInputType.text,
                                 controller: logInformController.emailController,
                                   boldLabel: 'Email',
                                   prefixIcon: Icons.person,
                                   hintText: 'Enter your email'),
                               customTextFormField(
+                                  inputType: TextInputType.text,
                                 controller: logInformController.passwordController,
                                   boldLabel: 'Password',
                                   isPasswordField: true,

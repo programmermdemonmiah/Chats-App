@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:chats_app/Controllers/auth/session_controller/session_controller.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/home_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +15,7 @@ class SpalashScreen extends StatefulWidget {
 }
 
 class _SpalashScreenState extends State<SpalashScreen> {
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
@@ -24,8 +26,10 @@ class _SpalashScreenState extends State<SpalashScreen> {
           MaterialPageRoute(
             builder: (context) => StreamBuilder<User?>( //login set kore rakhar niyom
               stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
+              builder: (context, snapshot) {// snapshot is a normal variable
+                final user = auth.currentUser;
                 if (snapshot.hasData && snapshot != null) {
+                  SessionController().userId = user!.uid.toString();
                   return HomeScreen();
                 } else if (snapshot.connectionState ==
                     ConnectionState.waiting) {

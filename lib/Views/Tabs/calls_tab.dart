@@ -7,7 +7,7 @@ class CallsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: 1,
       itemBuilder: (context, index) {
       return ListTile(
         title: const Text('Friend Name', style: TextStyle(color: Colors.white),),

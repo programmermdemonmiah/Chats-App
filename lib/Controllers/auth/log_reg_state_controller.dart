@@ -1,21 +1,28 @@
 import 'package:chats_app/Controllers/auth/firebase_auth/firebase_auth_services.dart';
+import 'package:chats_app/Controllers/auth/session_controller/session_controller.dart';
 import 'package:chats_app/Views/home_Screen.dart';
-import 'package:chats_app/Widgets/global_mathod/toast.dart';
+import 'package:chats_app/Widgets/global_mathod/common/toast.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LogRegStateController extends GetxController{
+class LogRegStateController extends GetxController {
   var isSignInUp = false.obs;
   final FirebaseAuthService _auth = FirebaseAuthService();
-   TextEditingController  firstnameController = TextEditingController();
-   TextEditingController lastnameController = TextEditingController();
-   TextEditingController usernameController = TextEditingController();
-   TextEditingController emailController = TextEditingController();
-   TextEditingController passwordController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  void register() async{
+  //database
+  DatabaseReference databaseRef =
+      FirebaseDatabase.instance.ref().child('users');
+
+  //register database connet ===================================================
+  void register() async {
     isSignInUp.value = !isSignInUp.value;
     String firstname = firstnameController.text;
     String lastname = lastnameController.text;
@@ -25,29 +32,46 @@ class LogRegStateController extends GetxController{
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
     isSignInUp.value = !isSignInUp.value;
-    if (user != null){
-      showToast(message: 'User is successfully created');
-      Get.until((route) => false) ;
-      Get.to(HomeScreen());
-    }else{
-      showToast(message: 'some error happend');
+    if (username.toString() != databaseRef.child("username").toString() &&
+        username.toString() != null &&
+        user != null) {
+      databaseRef.child(user!.uid.toString()).set({
+        'uid': user!.uid.toString(),
+        'email': user!.email.toString(),
+        'username': usernameController.text.toString(),
+        'first name': firstname.toString(),
+        'last name': lastname.toString(),
+        'profile_picture': '',
+        'online status': 'status',
+      }).then((value) {
+        showToast(message: 'User is successfully created');
+        SessionController().userId = user.uid.toString();
+        Get.until((route) => false);
+        Get.to(HomeScreen());
+      });
+    } else if (username.toString() ==
+        databaseRef.child("username").toString()) {
+      showToast(message: 'Already used this username');
+    } else {
+      showToast(message: 'enter valid username');
     }
   }
 
-  void login() async{
+  // login database =============================
+  void login() async {
     isSignInUp.value = !isSignInUp.value;
     String email = emailController.text;
     String password = passwordController.text;
     User? user = await _auth.signInWithEmailAndPassword(email, password);
     isSignInUp.value = !isSignInUp.value;
-    if (user != null){
+    if (user != null) {
       showToast(message: 'User is successfully signIn');
+      SessionController().userId = user.uid.toString();
       Get.until((route) => false);
       Get.to(HomeScreen());
       // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen(),), (route) => false);
-    }else{
+    } else {
       showToast(message: 'some error happend');
     }
   }
-
 }

@@ -65,6 +65,7 @@ class RegistrationScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: customTextFormField(
+                              inputType: TextInputType.text,
                               controller: registerFormController.firstnameController,
                               boldLabel: "First name",
                               hintText: "Enter your first name",
@@ -73,6 +74,7 @@ class RegistrationScreen extends StatelessWidget {
                           ),
                           Expanded(
                               child: customTextFormField(
+                                  inputType: TextInputType.text,
                                 controller: registerFormController.lastnameController,
                                   boldLabel: 'Last name',
                                   hintText: 'Enter your last name'))
@@ -80,16 +82,27 @@ class RegistrationScreen extends StatelessWidget {
                       ),
                       // const SizedBox(height: 5,),
                       customTextFormField(
+                        // validator: (value) {
+                        //   DatabaseReference databaseRef = FirebaseDatabase.instance.ref().child('users').child('username');
+                        //   if(databaseRef.toString() == registerFormController.usernameController.toString()){
+                        //     return 'username not viald';
+                        //   }else{
+                        //     return null;
+                        //   }
+                        // },
+                          inputType: TextInputType.text,
                           boldLabel: 'Username',
                           hintText: 'Enter a valid username',
                           controller: registerFormController.usernameController,
                           prefixIcon: Icons.person),
                       customTextFormField(
+                          inputType: TextInputType.text,
                         controller: registerFormController.emailController,
                           boldLabel: 'Email',
                           prefixIcon: Icons.person,
                           hintText: "Enter your email"),
                       customTextFormField(
+                          inputType: TextInputType.text,
                         controller: registerFormController.passwordController,
                           boldLabel: 'Password',
                           prefixIcon: Icons.lock,

@@ -1,5 +1,5 @@
 
-import 'package:chats_app/Widgets/global_mathod/toast.dart';
+import 'package:chats_app/Widgets/global_mathod/common/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService{

@@ -101,9 +101,9 @@ import 'package:get/get.dart';
 
 Widget customTextFormField({
   required String boldLabel,
-  final TextEditingController? controller,
+  required TextEditingController? controller,
   final Key? filedKey,
-  final String? hintText,
+  required String? hintText,
   final bool? isPasswordField,
   final IconData? prefixIcon,
   final IconData? suffixIcon1,
@@ -111,7 +111,7 @@ Widget customTextFormField({
   final FormFieldSetter<String>? onSaved,
   final FormFieldValidator<String>? validator,
   final ValueChanged<String>? onFieldSubmitted,
-  final TextInputType? inputType,
+  required TextInputType? inputType,
 }){
   final isSecureController = Get.put(PasswordSecureState());
 
@@ -128,6 +128,7 @@ Widget customTextFormField({
         const SizedBox(height: 7),
         Obx(() => TextFormField(
           controller: controller,
+          keyboardType: inputType,
           key: filedKey,
           validator: validator,
           style: const TextStyle(color: Colors.white),

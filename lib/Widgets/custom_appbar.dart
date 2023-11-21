@@ -2,7 +2,7 @@ import 'package:chats_app/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-PreferredSizeWidget  customAppBar({required String tittle, required BuildContext context}){
+PreferredSizeWidget  customAppBar({required String tittle,IconData ? actionIcon, required BuildContext context}){
   return AppBar(
     backgroundColor: appBarBg,
     automaticallyImplyLeading: false,
@@ -13,7 +13,7 @@ PreferredSizeWidget  customAppBar({required String tittle, required BuildContext
     actions: [
       IconButton(onPressed: () {
 
-      }, icon: const Icon(Icons.search))
+      }, icon: Icon(actionIcon, color: Colors.white,))
     ],
   );
 }

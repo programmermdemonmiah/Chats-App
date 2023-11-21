@@ -47,14 +47,14 @@ class HomeScreen extends StatelessWidget {
                       switch (_tabController.tabController.index) {
                         case 0:
                           if (value == 1) {} else if (value == 2) {
-                            Get.to(const SettingsScreen());
+                            Get.to( SettingsScreen());
                           } else {
                             Get.back();
                           }
                           break;
                         case 1:
                           if (value == 1) {
-                            Get.to(const SettingsScreen());
+                            Get.to( SettingsScreen());
                           } else {
                             Get.back();
                           }
