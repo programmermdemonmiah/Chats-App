@@ -149,13 +149,13 @@ Widget customTextFormField({
                 )),
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-            // border: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(25),
-            //   borderSide: BorderSide(
-            //     width: 2,
-            //     color: Colors.white,
-            //   ),
-            // ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25),
+              borderSide: BorderSide(
+                width: 2,
+                color: Colors.white,
+              ),
+            ),
             enabled: true,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),

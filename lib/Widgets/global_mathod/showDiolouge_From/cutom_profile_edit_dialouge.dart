@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 final textFildTextController = Get.put(ProfileStateController());
+final _formkey = GlobalKey<FormState>();
 //showNameDialogAlert=====================
 Future<void> showNameDialogAlert(BuildContext context) {
   return showDialog(
@@ -52,7 +53,9 @@ Future<void> showNameDialogAlert(BuildContext context) {
             width: 5,
           ),
           TextButton(
-            onPressed: () {textFildTextController.updateName();},
+            onPressed: () {
+              textFildTextController.updateName();
+            },
             style: TextButton.styleFrom(backgroundColor: primary),
             child: const Text(
               'ok',
@@ -64,6 +67,7 @@ Future<void> showNameDialogAlert(BuildContext context) {
     },
   );
 }
+
 //showUsernameDialogAlert==============================
 Future<void> showUsernameDialogAlert(BuildContext context) {
   return showDialog(
@@ -80,12 +84,30 @@ Future<void> showUsernameDialogAlert(BuildContext context) {
         content: SingleChildScrollView(
           child: Column(
             children: [
-              customTextFormField(
-                  inputType: TextInputType.text,
-                  controller: textFildTextController.usernameController,
-                  boldLabel: 'Username',
-                  prefixIcon: Icons.person,
-                  hintText: 'enter your username'),
+              Form(
+                key: _formkey,
+                child: customTextFormField(
+                    validator: (usernameValue) {
+                      DatabaseReference databaseRef = FirebaseDatabase.instance
+                          .ref()
+                          .child('users')
+                          .child('username');
+                      if (usernameValue!.isEmpty) {
+                        return 'type vaild username';
+                      } else if (usernameValue.toString() ==
+                          databaseRef.child('username').toString()) {
+                        // == textFildTextController.usernameController.toString()
+                        return 'Already used this username';
+                      } else {
+                        return null;
+                      }
+                    },
+                    inputType: TextInputType.text,
+                    controller: textFildTextController.usernameController,
+                    boldLabel: 'Username',
+                    prefixIcon: Icons.person,
+                    hintText: 'enter your username'),
+              ),
             ],
           ),
         ),
@@ -104,7 +126,11 @@ Future<void> showUsernameDialogAlert(BuildContext context) {
             width: 5,
           ),
           TextButton(
-            onPressed: () {textFildTextController.updateUsername();},
+            onPressed: () {
+              if (_formkey.currentState!.validate()) {
+                textFildTextController.updateUsername();
+              }
+            },
             style: TextButton.styleFrom(backgroundColor: primary),
             child: const Text(
               'ok',
@@ -116,6 +142,7 @@ Future<void> showUsernameDialogAlert(BuildContext context) {
     },
   );
 }
+
 //showEmailDialogAlert========================================================
 Future<void> showEmailDialogAlert(BuildContext context) {
   return showDialog(
@@ -129,24 +156,19 @@ Future<void> showEmailDialogAlert(BuildContext context) {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              customTextFormField(
-                validator: (value) {
-                  DatabaseReference databaseRef = FirebaseDatabase.instance.ref().child('users').child('username');
-                  if(databaseRef.toString() == textFildTextController.usernameController.toString()){
-                    return 'username not viald';
-                  }else{
-                    return null;
-                  }
-                },
-                  inputType: TextInputType.text,
-                  controller: textFildTextController.emailController,
-                  boldLabel: 'Email Address',
-                  prefixIcon: Icons.alternate_email,
-                  hintText: 'enter your email'),
-            ],
+        content: Form(
+          key: _formkey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                customTextFormField(
+                    inputType: TextInputType.text,
+                    controller: textFildTextController.emailController,
+                    boldLabel: 'Email Address',
+                    prefixIcon: Icons.alternate_email,
+                    hintText: 'enter your email'),
+              ],
+            ),
           ),
         ),
         actions: [
@@ -164,7 +186,9 @@ Future<void> showEmailDialogAlert(BuildContext context) {
             width: 5,
           ),
           TextButton(
-            onPressed: () {textFildTextController.updateEmail();},
+            onPressed: () {
+              textFildTextController.updateEmail();
+            },
             style: TextButton.styleFrom(backgroundColor: primary),
             child: const Text(
               'ok',
@@ -176,6 +200,7 @@ Future<void> showEmailDialogAlert(BuildContext context) {
     },
   );
 }
+
 //========showPhoneNumberDialogAlert============================
 Future<void> showPhoneNumberDialogAlert(BuildContext context) {
   return showDialog(
@@ -216,7 +241,9 @@ Future<void> showPhoneNumberDialogAlert(BuildContext context) {
             width: 5,
           ),
           TextButton(
-            onPressed: () {textFildTextController.updatePhoneNumber();},
+            onPressed: () {
+              textFildTextController.updatePhoneNumber();
+            },
             style: TextButton.styleFrom(backgroundColor: primary),
             child: const Text(
               'ok',
@@ -228,6 +255,7 @@ Future<void> showPhoneNumberDialogAlert(BuildContext context) {
     },
   );
 }
+
 //===============showDescriptionDialogAlert==========================
 Future<void> showDescriptionDialogAlert(BuildContext context) {
   return showDialog(
@@ -268,7 +296,9 @@ Future<void> showDescriptionDialogAlert(BuildContext context) {
             width: 5,
           ),
           TextButton(
-            onPressed: () {textFildTextController.updateDescription();},
+            onPressed: () {
+              textFildTextController.updateDescription();
+            },
             style: TextButton.styleFrom(backgroundColor: primary),
             child: const Text(
               'ok',
