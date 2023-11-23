@@ -3,6 +3,7 @@ import 'package:chats_app/Utils/app_text.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/Tabs/calls_tab.dart';
 import 'package:chats_app/Views/Tabs/chats_tabs.dart';
+import 'package:chats_app/Views/search_screen.dart';
 import 'package:chats_app/Views/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
                 actions: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                  IconButton(onPressed: () {Get.to(SearchScreen(context: context,));}, icon: const Icon(Icons.search)),
                   PopupMenuButton(
                     offset: const Offset(0, 48),
                     shape: RoundedRectangleBorder(
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                       Icons.more_vert,
                       color: Colors.white,
                     ),
-                    color: appBarBg,
+                    color: appBarBg.withOpacity(0.6),
                     onSelected: (value) {
                       switch (_tabController.tabController.index) {
                         case 0:

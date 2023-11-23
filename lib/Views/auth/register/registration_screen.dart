@@ -4,6 +4,7 @@ import 'package:chats_app/Views/auth/login/login_screen.dart';
 import 'package:chats_app/Widgets/custom_back_button.dart';
 import 'package:chats_app/Widgets/custom_button.dart';
 import 'package:chats_app/Widgets/custom_textformfild.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({super.key});
 
   final registerFormController = Get.put(LogRegStateController());
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,85 +40,125 @@ class RegistrationScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Register',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        'if you have any account go to back and login. or, don’t have any account flap the gap. and create account',
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.5), fontSize: 16),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: customTextFormField(
-                              inputType: TextInputType.text,
-                              controller: registerFormController.firstnameController,
-                              boldLabel: "First name",
-                              hintText: "Enter your first name",
-                              // validator: (value) {},
-                            ),
-                          ),
-                          Expanded(
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Register',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          'if you have any account go to back and login. or, don’t have any account flap the gap. and create account',
+                          style: TextStyle(
+                              color: Colors.white.withOpacity(0.5), fontSize: 16),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
                               child: customTextFormField(
-                                  inputType: TextInputType.text,
-                                controller: registerFormController.lastnameController,
-                                  boldLabel: 'Last name',
-                                  hintText: 'Enter your last name'))
-                        ],
-                      ),
-                      // const SizedBox(height: 5,),
-                      customTextFormField(
-                        // validator: (value) {
-                        //   DatabaseReference databaseRef = FirebaseDatabase.instance.ref().child('users').child('username');
-                        //   if(databaseRef.toString() == registerFormController.usernameController.toString()){
-                        //     return 'username not viald';
-                        //   }else{
-                        //     return null;
-                        //   }
-                        // },
-                          inputType: TextInputType.text,
-                          boldLabel: 'Username',
-                          hintText: 'Enter a valid username',
-                          controller: registerFormController.usernameController,
-                          prefixIcon: Icons.person),
-                      customTextFormField(
-                          inputType: TextInputType.text,
-                        controller: registerFormController.emailController,
-                          boldLabel: 'Email',
-                          prefixIcon: Icons.person,
-                          hintText: "Enter your email"),
-                      customTextFormField(
-                          inputType: TextInputType.text,
-                        controller: registerFormController.passwordController,
-                          boldLabel: 'Password',
-                          prefixIcon: Icons.lock,
-                          isPasswordField: true,
-                          hintText: 'Enter your password',
-                          suffixIcon1: Icons.visibility,
-                          suffixIcon2: Icons.visibility_off)
-                    ],
+                                validator: (value) {
+                                  if(value!.isEmpty){
+                                    return "Enter your name";
+                                  }else{
+                                    return null;
+                                  }
+                                },
+                                inputType: TextInputType.text,
+                                controller: registerFormController.firstnameController,
+                                boldLabel: "First name",
+                                hintText: "Enter your first name",
+                                // validator: (value) {},
+                              ),
+                            ),
+                            Expanded(
+                                child: customTextFormField(
+                                    validator: (value) {
+                                      if(value!.isEmpty){
+                                        return 'Enter your last name';
+                                      }else{
+                                        return null;
+                                      }
+                                    },
+                                    inputType: TextInputType.text,
+                                  controller: registerFormController.lastnameController,
+                                    boldLabel: 'Last name',
+                                    hintText: 'Enter your last name'))
+                          ],
+                        ),
+                        // const SizedBox(height: 5,),
+                        customTextFormField(
+                          validator: (value) {
+                            DatabaseReference databaseRef = FirebaseDatabase.instance.ref().child('users').child('username');
+                            if(value!.isEmpty){
+                              return 'type username';
+                            }else if(databaseRef.toString() == registerFormController.usernameController.toString()){
+                              return 'username not viald';
+                            }else{
+                              return null;
+                            }
+                          },
+                            inputType: TextInputType.text,
+                            boldLabel: 'Username',
+                            hintText: 'Enter a valid username',
+                            controller: registerFormController.usernameController,
+                            prefixIcon: Icons.person),
+                        customTextFormField(
+                            validator: (value) {
+                              if(value!.isEmpty){
+                                return 'type email address ';
+                              }else if(value.isEmail){
+                                return null;
+                              }else{
+                                return null;
+                              }
+                            },
+                            inputType: TextInputType.text,
+                          controller: registerFormController.emailController,
+                            boldLabel: 'Email',
+                            prefixIcon: Icons.person,
+                            hintText: "Enter your email"),
+                        customTextFormField(
+                            validator: (value) {
+                              if(value!.isEmpty){
+                                return 'type your valid password';
+                              }else{
+                                return null;
+                              }
+                            },
+                            inputType: TextInputType.text,
+                          controller: registerFormController.passwordController,
+                            boldLabel: 'Password',
+                            prefixIcon: Icons.lock,
+                            isPasswordField: true,
+                            hintText: 'Enter your password',
+                            suffixIcon1: Icons.visibility,
+                            suffixIcon2: Icons.visibility_off)
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
                   ),
                   InkWell(
                       onTap: () {
-                        registerFormController.register();
+                        if(_formKey.currentState!.validate()){
+                          registerFormController.register();
+                        }else{
+                          return;
+                        }
+
                       },
                       child: customButton(
                           buttonName:'Register',

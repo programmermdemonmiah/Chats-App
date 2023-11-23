@@ -33,11 +33,11 @@ class LogRegStateController extends GetxController {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
     isSignInUp.value = !isSignInUp.value;
     if (username.toString() != databaseRef.child("username").toString() &&
-        username.toString() != null &&
+        username.toString() != "" &&
         user != null) {
-      databaseRef.child(user!.uid.toString()).set({
-        'uid': user!.uid.toString(),
-        'email': user!.email.toString(),
+      databaseRef.child(user.uid.toString()).set({
+        'uid': user.uid.toString(),
+        'email': user.email.toString(),
         'username': usernameController.text.toString(),
         'first name': firstname.toString(),
         'last name': lastname.toString(),

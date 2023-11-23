@@ -15,7 +15,7 @@ class ChatsTab extends StatelessWidget {
             leading: const CircleAvatar(
               backgroundImage: NetworkImage(''),
               radius: 50,
-              backgroundColor: primary,
+              // backgroundColor: primary,
             ),
             trailing: Column(
               children: [

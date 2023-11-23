@@ -19,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: background,
       appBar: customAppBar(
-          tittle: 'Settigns', actionIcon: Icons.search, context: context),
+          tittle: 'Settigns', context: context),
       body: Container(
         height: double.infinity,
         width: double.infinity,

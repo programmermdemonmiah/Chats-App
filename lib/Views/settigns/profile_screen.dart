@@ -152,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                               ),
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {profileUpdateController.deleteImage();},
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(

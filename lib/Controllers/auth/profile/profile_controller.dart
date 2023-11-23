@@ -17,12 +17,13 @@ class ProfileStateController extends GetxController {
   bool get loading => _loading.value;
 
   setLoading(bool value) => _loading.value = value;
-
   final ImagePicker _imagePicker = ImagePicker();
   File? imageFile;
 
   //pic image ========
   void cameraImage() async {
+    final image = true.obs;
+    imageFile = (image) as File?;
     final imagePicker =
         await _imagePicker.pickImage(source: ImageSource.camera);
     if (imagePicker != null) {
@@ -36,6 +37,8 @@ class ProfileStateController extends GetxController {
   }
 
   void gallaryImage() async {
+    final image = true.obs;
+    imageFile = (image) as File?;
     final imagePicker =
         await _imagePicker.pickImage(source: ImageSource.gallery);
     if (imagePicker != null) {
@@ -69,9 +72,17 @@ class ProfileStateController extends GetxController {
     }
   }
 
-  // void deleteImage()async{
-  //   storageRef.delete();
-  // }
+  void deleteImage()async{
+    storageRef.delete();
+    databaseRef.child(SessionController().userId.toString()).update({
+      "profile_picture" : "",
+    }).then((value){
+      showToast(message: 'Delete succesfully');
+      Get.back();
+    }).onError((error, stackTrace){
+      showToast(message: 'something went wrong');
+    });
+  }
 
   //text edit controller ===========================start==========
   TextEditingController firstnameController = TextEditingController();

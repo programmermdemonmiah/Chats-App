@@ -94,9 +94,9 @@ Future<void> showUsernameDialogAlert(BuildContext context) {
                           .child('username');
                       if (usernameValue!.isEmpty) {
                         return 'type vaild username';
-                      } else if (usernameValue.toString() ==
+                      } else if ( textFildTextController.usernameController.toString() ==
                           databaseRef.child('username').toString()) {
-                        // == textFildTextController.usernameController.toString()
+                        // == usernameValue.toString()
                         return 'Already used this username';
                       } else {
                         return null;
