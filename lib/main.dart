@@ -1,4 +1,5 @@
 import 'package:chats_app/All_Binding/all_binding.dart';
+import 'package:chats_app/Utils/routes.dat.dart';
 import 'package:chats_app/Views/spalash/spalash_screen.dart';
 import 'package:chats_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,8 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // getPages: Routes.routes,
+      // initialRoute: "/spalashScreen",
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
+
       home: const SpalashScreen(),
     );
   }

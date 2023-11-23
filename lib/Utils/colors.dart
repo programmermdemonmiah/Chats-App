@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const Color appBarBg  = Color(0xff1F2C34);
-const Color background  = Color(0xff121B22);
-const Color primary = Color(0xff00A884);
+const Color appBarBg  = Color(0xff272C26);
+const Color background  = Color(0xff1d211c);
+const Color primary = Color(0xff009900);
 
+const Color iconColor = Colors.white;

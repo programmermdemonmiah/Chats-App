@@ -1,4 +1,4 @@
-import 'package:chats_app/Controllers/auth/profile/profile_controller.dart';
+import 'package:chats_app/Controllers/profile/profile_controller.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Widgets/custom_textformfild.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -24,13 +24,13 @@ Future<void> showNameDialogAlert(BuildContext context) {
           child: Column(
             children: [
               customTextFormField(
-                  inputType: TextInputType.text,
+                  keyBoardInputType: TextInputType.text,
                   controller: textFildTextController.firstnameController,
                   boldLabel: 'First Name',
                   prefixIcon: Icons.person,
                   hintText: 'enter your first name'),
               customTextFormField(
-                  inputType: TextInputType.text,
+                  keyBoardInputType: TextInputType.text,
                   controller: textFildTextController.lastnameController,
                   boldLabel: 'Last Name',
                   prefixIcon: Icons.person,
@@ -94,15 +94,15 @@ Future<void> showUsernameDialogAlert(BuildContext context) {
                           .child('username');
                       if (usernameValue!.isEmpty) {
                         return 'type vaild username';
-                      } else if (usernameValue.toString() ==
+                      } else if ( textFildTextController.usernameController.toString() ==
                           databaseRef.child('username').toString()) {
-                        // == textFildTextController.usernameController.toString()
+                        // == usernameValue.toString()
                         return 'Already used this username';
                       } else {
                         return null;
                       }
                     },
-                    inputType: TextInputType.text,
+                    keyBoardInputType: TextInputType.text,
                     controller: textFildTextController.usernameController,
                     boldLabel: 'Username',
                     prefixIcon: Icons.person,
@@ -162,7 +162,7 @@ Future<void> showEmailDialogAlert(BuildContext context) {
             child: Column(
               children: [
                 customTextFormField(
-                    inputType: TextInputType.text,
+                    keyBoardInputType: TextInputType.text,
                     controller: textFildTextController.emailController,
                     boldLabel: 'Email Address',
                     prefixIcon: Icons.alternate_email,
@@ -218,7 +218,7 @@ Future<void> showPhoneNumberDialogAlert(BuildContext context) {
           child: Column(
             children: [
               customTextFormField(
-                  inputType: TextInputType.text,
+                  keyBoardInputType: TextInputType.text,
                   controller: textFildTextController.phonenumberController,
                   boldLabel: 'Phone Number',
                   prefixIcon: Icons.phone,
@@ -273,7 +273,7 @@ Future<void> showDescriptionDialogAlert(BuildContext context) {
           child: Column(
             children: [
               customTextFormField(
-                  inputType: TextInputType.text,
+                  keyBoardInputType: TextInputType.text,
                   controller: textFildTextController.descriptionController,
                   boldLabel: 'Description',
                   prefixIcon: Icons.message,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget customSettingsItem(
-    {IconData ? leadingIcon, required String tittle, String ? subTittle, IconData ? trailingIcon}) {
+    {IconData ? leadingIcon, required String tittle,required String ? subTittle, IconData ? trailingIcon}) {
   return ListTile(
     leading: Icon(leadingIcon, color: Colors.white,),
     title: Text(tittle, style: const TextStyle(

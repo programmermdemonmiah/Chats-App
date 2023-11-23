@@ -1,5 +1,6 @@
 import 'package:chats_app/Controllers/auth/log_reg_state_controller.dart';
 import 'package:chats_app/Utils/colors.dart';
+import 'package:chats_app/Views/auth/forgot_password/forgot_password_screen.dart';
 import 'package:chats_app/Views/auth/register/registration_screen.dart';
 import 'package:chats_app/Widgets/custom_back_button.dart';
 import 'package:chats_app/Widgets/custom_button.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final logInformController = Get.put(LogRegStateController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,21 +65,26 @@ class LoginScreen extends StatelessWidget {
                                 height: 30,
                               ),
                               customTextFormField(
-                                inputType: TextInputType.text,
-                                controller: logInformController.emailController,
+                                  onFieldSubmitted: (email) {},
+                                  keyBoardInputType: TextInputType.emailAddress,
+                                  controller:
+                                      logInformController.emailController,
                                   boldLabel: 'Email',
                                   prefixIcon: Icons.person,
                                   hintText: 'Enter your email'),
                               customTextFormField(
-                                  inputType: TextInputType.text,
-                                controller: logInformController.passwordController,
+                                  keyBoardInputType: TextInputType.text,
+                                  controller:
+                                      logInformController.passwordController,
                                   boldLabel: 'Password',
                                   isPasswordField: true,
                                   prefixIcon: Icons.lock,
                                   suffixIcon1: Icons.visibility,
                                   suffixIcon2: Icons.visibility_off,
                                   hintText: 'Enter your password'),
-                              const SizedBox(height: 5,),
+                              const SizedBox(
+                                height: 5,
+                              ),
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
@@ -86,7 +93,10 @@ class LoginScreen extends StatelessWidget {
                                   message:
                                       "If you have forgotten your password, you can recover the password",
                                   child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        // Get.toNamed('/forgotPasswordScreen');
+                                        Get.to(ForgotPasswordScreen());
+                                      },
                                       child: const Text(
                                         'Forgot Password?',
                                         style: TextStyle(
@@ -126,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                                 TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Get.to( RegistrationScreen());
+                                      Get.to(RegistrationScreen());
                                     },
                                   text: "Register",
                                   style: const TextStyle(

@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:chats_app/Controllers/auth/session_controller/session_controller.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:chats_app/Views/home_Screen.dart';
+import 'package:chats_app/core/session_controller_services/session_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class SpalashScreen extends StatefulWidget {
 }
 
 class _SpalashScreenState extends State<SpalashScreen> {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
@@ -52,24 +52,40 @@ class _SpalashScreenState extends State<SpalashScreen> {
       body: SafeArea(
         child: Container(
           alignment: Alignment.center,
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child:  Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
+              const SizedBox.shrink(),
+              const CircleAvatar(
                 backgroundImage: AssetImage('assets/images/CA.png'),
-                radius: 100,
+                radius: 80,
               ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: LinearProgressIndicator(
-                  color: Colors.blue,
-                  backgroundColor: Colors.green,
-                ),
+              // Padding(
+              //   padding: EdgeInsets.all(20.0),
+              //   child: LinearProgressIndicator(
+              //     color: Colors.blue,
+              //     backgroundColor: Colors.green,
+              //   ),
+              // ),
+              const SizedBox.shrink(),
+              const SizedBox.shrink(),
+              const SizedBox.shrink(),
+              const SizedBox.shrink(),
+              const SizedBox.shrink(),
+              const CircularProgressIndicator(
+                color: Colors.orange,
+                backgroundColor: Colors.green,
               ),
-              Text(
-                "Created by 'programmermdemonmiah' ",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
+              Column(
+                children: [
+                  Text(
+                    "Created by 'programmermdemonmiah' ",
+                    style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 16,fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 10,)
+                ],
+              )
             ],
           ),
         ),

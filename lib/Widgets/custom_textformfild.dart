@@ -1,3 +1,4 @@
+
 import 'package:chats_app/Controllers/password_secure_state_controllers.dart';
 import 'package:chats_app/Utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,8 @@ Widget customTextFormField({
   final FormFieldSetter<String>? onSaved,
   final FormFieldValidator<String>? validator,
   final ValueChanged<String>? onFieldSubmitted,
-  required TextInputType? inputType,
+  final TextInputType? keyBoardInputType,
+  final FocusNode ? focusNode,
 }){
   final isSecureController = Get.put(PasswordSecureState());
 
@@ -127,8 +129,10 @@ Widget customTextFormField({
         ),
         const SizedBox(height: 7),
         Obx(() => TextFormField(
+          autofocus: false,
+          focusNode: focusNode,
           controller: controller,
-          keyboardType: inputType,
+          keyboardType: keyBoardInputType,
           key: filedKey,
           validator: validator,
           style: const TextStyle(color: Colors.white),
@@ -151,7 +155,7 @@ Widget customTextFormField({
             hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 width: 2,
                 color: Colors.white,
               ),
