@@ -114,6 +114,7 @@ Widget customTextFormField({
   final ValueChanged<String>? onFieldSubmitted,
   final TextInputType? keyBoardInputType,
   final FocusNode ? focusNode,
+  final TextInputType ? inputType,
 }){
   final isSecureController = Get.put(PasswordSecureState());
 

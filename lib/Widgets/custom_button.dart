@@ -18,7 +18,7 @@ Widget customButton({required String buttonName, required Color buttonColor, req
         border: Border.all(color: primary, width: 2),
         color: buttonColor,
       ),
-      child: signInUpController.isTap.value == true? const CircularProgressIndicator(color: Colors.green,backgroundColor: Colors.orange,):Text(buttonName, style: const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w600),),
+      child: signInUpController.isSignInUp.value == true? const CircularProgressIndicator(color: Colors.green,backgroundColor: Colors.orange,):Text(buttonName, style: const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w600),),
     )),
   );
 }
