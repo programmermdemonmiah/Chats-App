@@ -1,5 +1,6 @@
 import 'package:chats_app/All_Binding/all_binding.dart';
 import 'package:chats_app/Utils/routes.dat.dart';
+import 'package:chats_app/Views/auth/number_login/number_login.dart';
 import 'package:chats_app/Views/spalash/spalash_screen.dart';
 import 'package:chats_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';

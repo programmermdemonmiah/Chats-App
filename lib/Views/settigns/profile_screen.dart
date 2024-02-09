@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chats_app/Utils/style.dart';
 import 'package:chats_app/Widgets/custom_scafold.dart';
 import 'package:chats_app/core/session_controller_services/session_controller.dart';
@@ -60,42 +62,42 @@ class ProfileScreen extends StatelessWidget {
                       Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          Container(
-                            child: profileUpdateController.imageFile == null
+                          Obx(() => Container(
+                            child: profileUpdateController.imageFile.isEmpty
                                 ? map['profile_picture'].toString() != ""
-                                    ? InkWell(
-                                        onTap: () {
-                                          Get.to(ViewPictureScreen(profilePicture:  map['profile_picture']
-                                              .toString()));
-                                        },
-                                        child: CircleAvatar(
-                                          radius: 90,
-                                          backgroundImage: NetworkImage(
-                                            map['profile_picture'],
-                                          ),
-                                        ),
-                                      )
-                                    : Container(
-                                        height: 170,
-                                        width: 170,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.person,
-                                            size: 90,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      )
+                                ? InkWell(
+                              onTap: () {
+                                Get.to(ViewPictureScreen(profilePicture:  map['profile_picture']
+                                    .toString()));
+                              },
+                              child: CircleAvatar(
+                                radius: 90,
+                                backgroundImage: NetworkImage(
+                                  map['profile_picture'],
+                                ),
+                              ),
+                            )
+                                : Container(
+                              height: 170,
+                              width: 170,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.person,
+                                  size: 90,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )
                                 : CircleAvatar(
-                                    radius: 90,
-                                    backgroundImage: FileImage(
-                                        profileUpdateController.imageFile!)),
-                          ),
+                                radius: 90,
+                                backgroundImage: FileImage(
+                                    File(profileUpdateController.imageFile.toString()))),
+                          )),
                           //=====
                           Positioned(
                             bottom: 1,

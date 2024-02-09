@@ -20,14 +20,17 @@ class ProfileStateController extends GetxController {
 
   setLoading(bool value) => _loading.value = value;
   final ImagePicker _imagePicker = ImagePicker();
-  File? imageFile;
+   RxString imageFile = ''.obs;
+   File ? _imageFile;
+
 
   //pic image ========
   void cameraImage() async {
     final imagePicker =
         await _imagePicker.pickImage(source: ImageSource.camera);
     if (imagePicker != null) {
-      imageFile = File(imagePicker.path);
+      imageFile.value = imagePicker.path.toString();
+      _imageFile = File(imagePicker.path);
       uploadImage();
     } else {
       showToast(message: 'Selected file does not exist.');
@@ -37,10 +40,10 @@ class ProfileStateController extends GetxController {
   }
 
   void gallaryImage() async {
-    final imagePicker =
-        await _imagePicker.pickImage(source: ImageSource.gallery);
-    if (imagePicker != null) {
-      imageFile = File(imagePicker.path);
+    final imagePicker = await _imagePicker.pickImage(source: ImageSource.gallery);
+    if(imagePicker != null) {
+      imageFile.value = imagePicker.path.toString();
+      _imageFile = File(imagePicker.path);
       uploadImage();
     } else {
       showToast(message: 'Selected file does not exist.');
@@ -53,7 +56,7 @@ class ProfileStateController extends GetxController {
   void uploadImage() async {
     setLoading(true);
     // upload database====================
-    UploadTask uploadTask = storageRef.putFile(imageFile!);
+    UploadTask uploadTask = storageRef.putFile(_imageFile!);
     final fireStoreDataUpdate = _firestore.collection('users').doc(SessionController().userId.toString());
     try {
       await Future.value(uploadTask);
@@ -61,8 +64,8 @@ class ProfileStateController extends GetxController {
       fireStoreDataUpdate.update({
         'profile_picture': newUrl.toString(),
       }).then((value) {
+        imageFile.value = '';
         setLoading(false);
-        imageFile = null;
         showToast(message: 'Successfully profile picture updated');
       });
     } catch (error) {
